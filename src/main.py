@@ -1,7 +1,7 @@
-from orquestrador import Orquestrador
+from orquestrador import Orchestrator
 
 def main():
-    Orquestrador.openProcess()
-    Orquestrador.printar()
+    orchestrator = Orchestrator()
+    orchestrator.openMainProcess()
 
 main()
