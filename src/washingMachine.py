@@ -16,4 +16,5 @@ class WashingMachine:
         else:
             self.next.quantity += self.quantity * 0.975
             self.quantity -= self.quantity
+
     
