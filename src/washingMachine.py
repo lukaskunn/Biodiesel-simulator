@@ -1,10 +1,10 @@
 from random import uniform
 
 class WashingMachine:
-    def __init__(self, nextComponent) -> None:
+    def __init__(self) -> None:
         self.time = 0
         self.quantity = 0
-        self.next = nextComponent
+        # self.next = nextComponent
 
     def runProcess(self):
         self.runWashingMachine()

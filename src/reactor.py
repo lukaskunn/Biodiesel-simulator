@@ -2,12 +2,12 @@ from random import uniform
 from decanter import Decanter
 
 class Reactor:
-    def __init__(self, decanter:Decanter) -> None:
+    def __init__(self) -> None:
         self.quantityOil = 0
         self.quantityNaOH = 0
         self.quantityEtOH = 0
         self.quantityProduct = 0
-        self.decanter = decanter
+        # self.decanter = decanter
 
 
     def runProcess(self):

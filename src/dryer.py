@@ -2,12 +2,12 @@ from finalContainer import FinalContainer
 
 
 class Dryer:
-    def __init__(self, finalContainer:FinalContainer) -> None:
+    def __init__(self) -> None:
         self.time = 0
         self.quantity = 0
         self.quantityReadyToLaunch = 0
         self.state = "ready"
-        self.finalContainer = finalContainer
+        # self.finalContainer = finalContainer
 
     def runProcess(self):
         self.dry()
@@ -23,7 +23,7 @@ class Dryer:
 
     def removeProduct(self):
         if self.quantityReadyToLaunch >= 1:
-            self.finalContainer.quantity += 1 * 0.995
+            # self.finalContainer.quantity += 1 * 0.995
             self.quantityReadyToLaunch -= 1
 
     def updateTime(self):
