@@ -79,8 +79,10 @@ class Orchestrator:
         print("quantidade de NaOH no reator: %.2fL" %self.reactor.quantityNaOH)
         print("quantidade de EtOH no reator: %.2fL" %self.reactor.quantityEtOH)
         print()
-        print("decanter + lavagem-------------------------")
+        print("decanter-----------------------------------")
         print("quantidade de mistura no decantador: %.2fL" %self.decanter.quantity)
+        print("quantidade de glicerina gerada: %.2fL" %(self.decanter.quantityGlicerine))
+        print("lavagem-----------------------------------")
         print("quantidade de mistura na maquina de lavar 1: %.2fL" %self.washingMachine1.quantity)
         print("quantidade de mistura na maquina de lavar 2: %.2fL" %self.washingMachine2.quantity)
         print("quantidade de mistura na maquina de lavar 3: %.2fL" %self.washingMachine3.quantity)
@@ -88,6 +90,7 @@ class Orchestrator:
         print()
         print("container final----------------------------")
         print("quantidade de mistura no container final: %.2fL" %self.dryer.finalContainer.quantity)
+        print("quantidade de emulsão perdida: %.2fL" %(self.washingMachine1.quantityLost + self.washingMachine2.quantityLost + self.washingMachine3.quantityLost))
 
     def openServer(self):
         print("server orquestrador aberto")
