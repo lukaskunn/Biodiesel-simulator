@@ -1,11 +1,11 @@
 class Decanter:
-    def __init__(self, washingMachine, orchestrator) -> None:
+    def __init__(self) -> None:
         self.time = 0
         self.quantity = 0
         self.quantityGlicerine = 0
         self.state = "ready"
-        self.washingMachine = washingMachine
-        self.orchestrator = orchestrator
+        # self.washingMachine = washingMachine
+        # self.orchestrator = orchestrator
 
     def runProcess(self):
         self.runDecanter()

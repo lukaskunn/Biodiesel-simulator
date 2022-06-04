@@ -15,25 +15,25 @@ class Orchestrator:
     def __init__(self):
         self.time = 3600
         self.quantityEtOH = 0
-        self.port = 3001
+        self.port = 30002
         self.host = "localhost"
 
         self.finalContainer = FinalContainer()
-        self.dryer = Dryer(self.finalContainer)
-        self.washingMachine3 = WashingMachine(self.dryer)
-        self.washingMachine2 = WashingMachine(self.washingMachine3)
-        self.washingMachine1 = WashingMachine(self.washingMachine2)
-        self.decanter = Decanter(self.washingMachine1, self)
-        self.reactor = Reactor(self.decanter)
-        self.oilBarrel = OilBarrel(self.reactor)
-        self.poolNaOHEtOH = PoolNaOHEtOH(self.reactor)
+        self.dryer = Dryer()
+        self.washingMachine3 = WashingMachine()
+        self.washingMachine2 = WashingMachine()
+        self.washingMachine1 = WashingMachine()
+        self.decanter = Decanter()
+        self.reactor = Reactor()
+        self.oilBarrel = OilBarrel()
+        self.poolNaOHEtOH = PoolNaOHEtOH()
         self.finalContainer = FinalContainer()
         
     def openMainProcess(self):
         print("processo principal aberto")
-        # self.openClientServers()
+        self.openClientServers()
         # self.openServer()
-        self.runProcess()
+        # self.runProcess()
         
     def runProcess(self):
         while self.time > 0:
@@ -94,12 +94,24 @@ class Orchestrator:
 
     def openServer(self):
         print("server orquestrador aberto")
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server:
-            server.bind((self.host, self.port))
-            server.listen()
-            conn, addr = server.accept()
+        # with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server:
+        #     server.bind((self.host, self.port))
+        #     print("server aberto")
+        #     server.listen()
+        #     conn, addr = server.accept()
+        #     with conn:
+        #         print(f"connected by {addr}")
+        #         while True:
+        #             data = conn.recv(1024)
+        #             if not data:
+        #                 break
+        #             conn.sendall(data)
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.bind(("localhost", 30001))
+            s.listen()
+            conn, addr = s.accept()
             with conn:
-                print(f"connected by {addr}")
+                print(f"Connected by {addr}")
                 while True:
                     data = conn.recv(1024)
                     if not data:
@@ -108,8 +120,11 @@ class Orchestrator:
 
     def openClientServers(self):
         os.system(r'start cmd /c "python C:\\Users\\lucas\\Documents\\projetos\\Biodiesel-simulator\\src\\orquestrador.py')
-        os.system(r'start cmd /c "python C:\\Users\\lucas\\Documents\\projetos\\Biodiesel-simulator\\src\\oilBarrel.py')
+        # os.system(r'start cmd /c "python C:\\Users\\lucas\\Documents\\projetos\\Biodiesel-simulator\\src\\oilBarrel.py')
         # os.system(r'start cmd /c "python C:\\Users\\lucas\\Documents\\projetos\\Biodiesel-simulator\\src\\testclient.py')
         # os.system(r'start cmd /c "python C:\\Users\\lucas\\Documents\\projetos\\Biodiesel-simulator\\src\\testclient.py')
         # os.system(r'start cmd /c "python C:\\Users\\lucas\\Documents\\projetos\\Biodiesel-simulator\\src\\testclient.py')
         
+
+orchestrator = Orchestrator()
+orchestrator.openServer()
